@@ -1,0 +1,22 @@
+<form method="POST" action="{{ url_for('login') }}">
+  <div class='container'>
+    <label for='username'><b>Username</b></label><br/>
+    <input type='text' placeholder='Enter Username' name='username' required><br/>
+    <label for='password'><b>Password</b></label><br/>
+    <input type='password' placeholder='Enter Password' name=password required><br/>
+    <button type=submit>Login</button>
+  </div>
+</form>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+There is no such user, please register below.
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<a href="{{ url_for('register') }}">Don't have an account? Register here.</a>
+
+</body>
+</html>
