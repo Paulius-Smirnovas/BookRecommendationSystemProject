@@ -1,22 +1,21 @@
-import numpy as np
-import pandas as pd
+import os
 import json
 import csv
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import linear_kernel
-from flask import Flask, render_template, request
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+import numpy as np
+import pandas as pd
+
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
+
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask_login import LoginManager, UserMixin, login_user, login_required,\
+                        logout_user,current_user 
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import current_user
-from flask import request, redirect
-from flask import url_for
-from werkzeug.urls import url_encode
+
+from werkzeug.urls import url_encode 
 from werkzeug.security import generate_password_hash, check_password_hash
-import os
-from flask import flash
-from flask import jsonify, request
+
+
 
 
 file_path = os.path.abspath(os.getcwd())+"\database.db"
@@ -53,7 +52,7 @@ class Recommendation(db.Model):
 		
 
 data = []
-with open(r"C:\Users\pauli\Desktop\booksummaries.txt", "r",  encoding='utf-8') as f:
+with open("booksummaries.txt", "r", encoding='utf-8') as f:
     reader = csv.reader(f, dialect='excel-tab')
     for row in reader:
         data.append(row)
@@ -233,9 +232,6 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
-
-
-
 
 
 if __name__ == '__main__':
