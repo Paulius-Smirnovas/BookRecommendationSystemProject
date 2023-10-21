@@ -1,5 +1,7 @@
 # BookRecommendationSystemProject
 Unzip booksummaries.rar into the same folder as the project.
+Run the program via cmd. Go to the folder with app.py and write "python app.py" to run the program.
+Please have up to date versions of python and pip.
 
 Make sure you have these versions of libraries installed :
 
